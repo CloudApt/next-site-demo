@@ -6,10 +6,8 @@ on:
 
 env:
   SITE: site
-  # REGISTRY: ghcr.io
-  ECR: 461066316541.dkr.ecr.eu-central-1.amazonaws.com
-  ECR_REPO: next-site
-  IMAGE_NAME: ${{ github.repository }}
+  ECS_CLUSTER: fargate-next-site
+  ECS_SRV: next-site-srv
 
 jobs:
   build:
@@ -45,6 +43,8 @@ jobs:
           docker tag $REGISTRY/$REPOSITORY $REGISTRY/$REPOSITORY:dev
           docker push $REGISTRY/$REPOSITORY:dev
           docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
+      - name: Restart ECS service
+        run: aws ecs update-service --cluster ${{ env.ECS_CLUSTER }} --service ${{ env.ECS_SRV }} --force-new-deployment
 
       # - name: Log in to the Container registry
       #   uses: docker/login-action@65b78e6e13532edd9afa3aa52ac7964289d1a9c1
