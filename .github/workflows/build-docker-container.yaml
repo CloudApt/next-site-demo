@@ -9,14 +9,14 @@ jobs:
       - run: echo "branch name is ${{ github.ref }}"
       - name: Check out repository code
         uses: actions/checkout@v4
-      # - name: setup node v20
-      #   uses: actions/setup-node@v4
-      #   with:
-      #     node-version: '20'
-      # - name: install next.js
-      #   run: npm install next@latest react@latest react-dom@latest
-      # - name: install deps
-      #   run: cd site; npm install
+      - name: setup node v20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: install next.js
+        run: npm install next@latest react@latest react-dom@latest
+      - name: install deps
+        run: cd site; npm install
       - name: build docker container
         run: cd site; docker build -t next-site-demo .
       - run: echo "Job's status is ${{ job.status }}."
@@ -38,4 +38,3 @@ jobs:
   #     - name: build site
   #       run: cd site-sec-fix; npm run build
   #     - run: echo "Job's status is ${{ job.status }}."
-  
