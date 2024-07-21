@@ -5,7 +5,7 @@ on:
     branches: ['dev-static']
 
 env:
-  S3: next-static.deploy.ninja
+  S3: static-site.deploy.ninja
   SITE: site-static
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
