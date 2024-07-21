@@ -5,6 +5,7 @@ on:
     branches: ['dev-static']
 
 env:
+  S3: next-static.deploy.ninja
   SITE: site-static
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
@@ -26,4 +27,6 @@ jobs:
         run: cd ${{ env.SITE }}; npm install
       - name: build site
         run: cd ${{ env.SITE }}; npm run build
+      - name: cp output to S3
+        run: cd ${{ env.SITE }}/out; aws s3 cp * s3://${{ env.S3 }}/ --recursive
       - run: echo "Job's status is ${{ job.status }}."
