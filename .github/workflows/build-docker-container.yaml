@@ -1,6 +1,11 @@
 name: Build next.js docker container
 run-name: build next.js docker container
 on: [push]
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
 jobs:
   build:
     runs-on: self-hosted
