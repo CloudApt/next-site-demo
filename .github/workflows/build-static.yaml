@@ -1,5 +1,5 @@
-name: Build next.js docker container
-run-name: build next.js docker container
+name: Build next.js static website
+run-name: build next.js static website
 on: 
   push:
     branches: ['dev-static']
@@ -28,5 +28,5 @@ jobs:
       - name: build site
         run: cd ${{ env.SITE }}; npm run build
       - name: cp output to S3
-        run: cd ${{ env.SITE }}/out; aws s3 cp * s3://${{ env.S3 }}/ --recursive
+        run: cd ${{ env.SITE }}; aws s3 cp out/ s3://${{ env.S3 }}/ --recursive
       - run: echo "Job's status is ${{ job.status }}."
