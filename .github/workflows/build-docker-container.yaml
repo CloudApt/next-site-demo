@@ -42,8 +42,8 @@ jobs:
         run: |
           cd ${{ env.SITE }}; docker build -t $REGISTRY/$REPOSITORY .
           docker tag $REGISTRY/$REPOSITORY $REGISTRY/$REPOSITORY:$IMAGE_TAG
-          docker tag $REGISTRY/$REPOSITORY $REGISTRY/$REPOSITORY:${{ github.ref }}
-          docker push $REGISTRY/$REPOSITORY:${{ github.ref }}
+          docker tag $REGISTRY/$REPOSITORY $REGISTRY/$REPOSITORY:dev
+          docker push $REGISTRY/$REPOSITORY:dev
           docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
 
       # - name: Log in to the Container registry
