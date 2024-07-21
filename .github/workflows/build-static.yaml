@@ -2,14 +2,14 @@ name: Build next.js docker container
 run-name: build next.js docker container
 on: 
   push:
-    branches: ['dev-static']
+    branches: ['dev-static-fixed']
 
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
 
 jobs:
-  build:
+  build-static:
     runs-on: self-hosted
     steps:
       # - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
