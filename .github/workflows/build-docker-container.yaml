@@ -15,6 +15,8 @@ jobs:
           node-version: '20'
       - name: install next.js
         run: npm install next@latest react@latest react-dom@latest
+      - name: install deps
+        run: npm install
       - name: build site
         run: cd site; npm run build
       - run: echo "Job's status is ${{ job.status }}."
